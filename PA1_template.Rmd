@@ -33,14 +33,12 @@ For this part of the assignment, you can ignore the missing values in the datase
 
     Make a histogram of the total number of steps taken each day
 
-```{r histSteps}
+```{r Total Steps per Interval}
 byDay <- group_by(activity, date)
 byDaySum <- summarise(byDay, TotalSteps=sum(steps,na.rm=T))
 
 require(ggplot2)
 ggplot(byDaySum, aes(TotalSteps)) + geom_histogram()
-dev.copy(png, "instructions_fig/Total steps per interval.png")
-dev.off()
 ```
 
     Calculate and report the mean and median total number of steps taken per day
@@ -53,12 +51,10 @@ The mean is 9,354 and the median is 10,395
 ## What is the average daily activity pattern?
     Make a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)
     
-``` {r}
+``` {r Average steps per interval}
 byInterval <- group_by(activity,interval)
 byIntervalMean <- summarise(byInterval, StepsPerInterval=mean(steps,na.rm=T))
 ggplot(byIntervalMean, aes(interval, StepsPerInterval)) + geom_line()
-dev.copy(png, "instructions_fig/Average steps per interval.png")
-dev.off()
 ```
 
     Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
@@ -95,12 +91,10 @@ This is the activityImputed data set established above.
 
     Make a histogram of the total number of steps taken each day and Calculate and report the mean and median total number of steps taken per day. Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?
 
-``` {r}
+``` {r Total steps per interval - imputed}
 byDayImputed <- group_by(activityImputed,date)
 byDayImputedSum <- summarise(byDayImputed, TotalSteps=sum(steps))
 ggplot(byDayImputedSum,aes(TotalSteps)) + geom_histogram()
-dev.copy(png, "instructions_fig/Total steps per interval - imputed.png")
-dev.off()
 summary(byDayImputedSum)
 ```
 The mean and median are both 10,766. This is higher than the original dataset because there are more observations at the center (mean) of each interval's distribution.   
@@ -120,7 +114,7 @@ else activityImputed$weekend[i]="No" }
 ```
     Make a panel plot containing a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). The plot should look something like the following, which was creating using simulated data:
 
-``` {r}
+``` {r Average steps per interval by weekday or weekend}
 noDate <- select(activityImputed, -date)
 byIntervalImputed <- group_by(noDate, interval)
 weekend <- byIntervalImputed[byIntervalImputed$weekend=="Yes",]
@@ -131,8 +125,6 @@ weekendPlot <- ggplot(weekendSteps, aes(StepsPerInterval)) + geom_histogram() + 
 weekdayPlot <- ggplot(weekdaySteps, aes(StepsPerInterval)) + geom_histogram() + ggtitle("Weekday")
 require(gridExtra)
 grid.arrange(weekendPlot, weekdayPlot)
-dev.copy(png, "instructions_fig/Mean steps per interval by weekday or weekend.png")
-dev.off()
 ```
 
 Definitely a difference. During the week you have movement that peaks in the morning then settles. During the weekend you have steady movement throughout the day. 

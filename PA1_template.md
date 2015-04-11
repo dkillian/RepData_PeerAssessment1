@@ -128,25 +128,7 @@ ggplot(byDaySum, aes(TotalSteps)) + geom_histogram()
 ## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
 ```
 
-![](PA1_template_files/figure-html/histSteps-1.png) 
-
-```r
-dev.copy(png, "instructions_fig/Total steps per interval.png")
-```
-
-```
-## png 
-##   3
-```
-
-```r
-dev.off()
-```
-
-```
-## png 
-##   2
-```
+![](PA1_template_files/figure-html/Total Steps per Interval-1.png) 
 
     Calculate and report the mean and median total number of steps taken per day
 
@@ -185,25 +167,7 @@ byIntervalMean <- summarise(byInterval, StepsPerInterval=mean(steps,na.rm=T))
 ggplot(byIntervalMean, aes(interval, StepsPerInterval)) + geom_line()
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-2-1.png) 
-
-```r
-dev.copy(png, "instructions_fig/Average steps per interval.png")
-```
-
-```
-## png 
-##   3
-```
-
-```r
-dev.off()
-```
-
-```
-## png 
-##   2
-```
+![](PA1_template_files/figure-html/Average steps per interval-1.png) 
 
     Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
 
@@ -309,25 +273,7 @@ ggplot(byDayImputedSum,aes(TotalSteps)) + geom_histogram()
 ## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-6-1.png) 
-
-```r
-dev.copy(png, "instructions_fig/Total steps per interval - imputed.png")
-```
-
-```
-## png 
-##   3
-```
-
-```r
-dev.off()
-```
-
-```
-## png 
-##   2
-```
+![](PA1_template_files/figure-html/Total steps per interval - imputed-1.png) 
 
 ```r
 summary(byDayImputedSum)
@@ -395,24 +341,6 @@ grid.arrange(weekendPlot, weekdayPlot)
 ## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-8-1.png) 
-
-```r
-dev.copy(png, "instructions_fig/Mean steps per interval by weekday or weekend.png")
-```
-
-```
-## png 
-##   3
-```
-
-```r
-dev.off()
-```
-
-```
-## png 
-##   2
-```
+![](PA1_template_files/figure-html/Average steps per interval by weekday or weekend-1.png) 
 
 Definitely a difference. During the week you have movement that peaks in the morning then settles. During the weekend you have steady movement throughout the day. 
