@@ -238,7 +238,9 @@ count(activity[activity=="NA",])
 ```
 2,304
 
-Devise a strategy for filling in all of the missing values in the dataset. The strategy does not need to be sophisticated. For example, you could use the mean/median for that day, or the mean for that 5-minute interval, etc.
+Devise a strategy for filling in all of the missing values in the dataset. The strategy does not need to be sophisticated. For example, you could use the mean/median for that day, or the mean for that 5-minute interval, etc.  
+
+I will impute missing values with the mean of its corresponding interval. The implicit assumption behind this decision is that the time of day is the primary determinant of the steps taken, rather than which day it is. Given the analysis of weekday and weekend activity patterns below, a more robust strategy would be to impute the interval mean of the weekend or weekday, or even the interval mean of the specific day.  
 
 
 ```r
@@ -260,6 +262,19 @@ Create a new dataset that is equal to the original dataset but with the missing 
 
 This is the activityImputed data set established above. 
 
+```r
+head(activityImputed)
+```
+
+```
+##       steps      date interval StepsPerInterval
+## 1 1.7169811 10/1/2012        0        1.7169811
+## 2 0.3396226 10/1/2012        5        0.3396226
+## 3 0.1320755 10/1/2012       10        0.1320755
+## 4 0.1509434 10/1/2012       15        0.1509434
+## 5 0.0754717 10/1/2012       20        0.0754717
+## 6 2.0943396 10/1/2012       25        2.0943396
+```
     Make a histogram of the total number of steps taken each day and Calculate and report the mean and median total number of steps taken per day. Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?
 
 
